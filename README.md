@@ -18,7 +18,7 @@
 ```bash
 cd /Users/cccc/Documents/java-agent-scaffold
 mvn -q -DskipTests package
-java -jar target/java-agent-0.2.0.jar
+java -jar target/java-agent-0.3.0.jar
 ```
 
 首次运行会在当前目录自动生成：
@@ -37,7 +37,7 @@ java -jar target/java-agent-0.2.0.jar
 优先级：CLI > 环境变量 > agent.json
 
 ```bash
-java -jar target/java-agent-0.2.0.jar \
+java -jar target/java-agent-0.3.0.jar \
   --base-url http://127.0.0.1:8317/v1 \
   --model gpt-5.2 \
   --memory-file memory.json
@@ -73,3 +73,5 @@ Agent 会执行对应工具，并把结果作为 `tool` 消息写回对话，继
 内置工具：
 - `time.now`：返回当前时间（ISO-8601）
 - `http.fetch`：GET 抓取 URL 并截断返回前 N 个字符
+- `fs.ls`：列出本地目录（相对路径）
+- `fs.read`：读取本地文本文件（相对路径）

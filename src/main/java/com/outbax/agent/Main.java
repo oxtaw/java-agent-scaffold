@@ -51,6 +51,8 @@ public class Main {
     ToolRegistry tools = new ToolRegistry();
     tools.register(new TimeTool());
     tools.register(new HttpFetchTool(Duration.ofSeconds(20)));
+    tools.register(new FsReadTool());
+    tools.register(new FsListTool());
 
     // 3) 初始化“记忆”（对话历史存 JSON 文件）
     MemoryStore memory = new JsonMemoryStore(Path.of(cfg.memoryFile()));
