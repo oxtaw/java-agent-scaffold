@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://codex.snowcc.dpdns.org/v1",
+  "baseUrl": "http://127.0.0.1:8317/v1",
   "apiKey": "your-api-key-1",
   "model": "gpt-5.2",
   "timeoutSeconds": 120,
