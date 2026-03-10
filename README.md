@@ -6,6 +6,7 @@
 - JSON Memory（对话历史落盘到 `memory.json`）
 - 支持“工具调用”（prototype 版）
 - 版本迭代：每个版本都新增功能（见 `CHANGELOG.md` / git tags）
+- 版本说明：`docs/releases/`（每个版本包含 What/Why/Problem Solved）
 
 > 目标：先把“能跑、能连 8317、能调用工具、能存记忆”这条链路跑通，再逐步扩展成更强的 Agent（Planner/Router/多工具/HTTP API 等）。
 
