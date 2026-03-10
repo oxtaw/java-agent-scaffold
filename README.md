@@ -5,6 +5,7 @@
 - 对接 OpenAI 兼容接口（默认你本机：`http://127.0.0.1:8317/v1`）
 - JSON Memory（对话历史落盘到 `memory.json`）
 - 支持“工具调用”（prototype 版）
+- 版本迭代：每个版本都新增功能（见 `CHANGELOG.md` / git tags）
 
 > 目标：先把“能跑、能连 8317、能调用工具、能存记忆”这条链路跑通，再逐步扩展成更强的 Agent（Planner/Router/多工具/HTTP API 等）。
 
@@ -17,7 +18,7 @@
 ```bash
 cd /Users/cccc/Documents/java-agent-scaffold
 mvn -q -DskipTests package
-java -jar target/java-agent-0.1.0.jar
+java -jar target/java-agent-0.2.0.jar
 ```
 
 首次运行会在当前目录自动生成：
@@ -31,6 +32,27 @@ java -jar target/java-agent-0.1.0.jar
 - `timeoutSeconds`：请求超时
 - `memoryFile`：记忆文件名（默认 `memory.json`）
 - `maxTurns`：每次用户输入最多允许工具循环几轮（防止死循环）
+
+## CLI 参数（覆盖配置）
+优先级：CLI > 环境变量 > agent.json
+
+```bash
+java -jar target/java-agent-0.2.0.jar \
+  --base-url http://127.0.0.1:8317/v1 \
+  --model gpt-5.2 \
+  --memory-file memory.json
+```
+
+支持环境变量：
+- `AGENT_BASE_URL`
+- `AGENT_MODEL`
+- `AGENT_API_KEY`
+- `AGENT_TIMEOUT_SECONDS`
+- `AGENT_MEMORY_FILE`
+- `AGENT_MAX_TURNS`
+
+CLI 小命令：
+- `:reset` 清空 `memory.json`
 
 ## IDEA 运行提示
 如果遇到 “不支持发行版本 21”，说明你的项目/模块 JDK 版本太低。

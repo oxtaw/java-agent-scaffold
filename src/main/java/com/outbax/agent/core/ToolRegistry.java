@@ -11,9 +11,16 @@ public class ToolRegistry {
 
   public String toolsPrompt() {
     StringBuilder sb = new StringBuilder();
-    sb.append("Available tools (call by emitting JSON: {\"tool\":\"name\",\"args\":{...}}):\n");
+    sb.append("Available tools (when needed, emit ONLY a JSON object: {\"tool\":\"name\",\"args\":{...}}):\n");
     for (Tool t : tools.values()) {
       sb.append("- ").append(t.name()).append(": ").append(t.description()).append("\n");
+      Map<String, String> schema = t.schema();
+      if (schema != null && !schema.isEmpty()) {
+        sb.append("  args:\n");
+        for (Map.Entry<String, String> e : schema.entrySet()) {
+          sb.append("    - ").append(e.getKey()).append(": ").append(e.getValue()).append("\n");
+        }
+      }
     }
     return sb.toString();
   }

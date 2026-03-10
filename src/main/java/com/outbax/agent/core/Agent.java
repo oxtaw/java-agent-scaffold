@@ -11,12 +11,14 @@ public class Agent {
   private final ToolRegistry tools;
   private final MemoryStore memory;
   private final AgentConfig cfg;
+  private final String systemPrompt;
 
-  public Agent(LlmClient llm, ToolRegistry tools, MemoryStore memory, AgentConfig cfg) {
+  public Agent(LlmClient llm, ToolRegistry tools, MemoryStore memory, AgentConfig cfg, String systemPrompt) {
     this.llm = llm;
     this.tools = tools;
     this.memory = memory;
     this.cfg = cfg;
+    this.systemPrompt = systemPrompt;
   }
 
   /**
@@ -34,7 +36,13 @@ public class Agent {
     history.add(ChatMessage.user(userInput));
 
     for (int turn = 0; turn < cfg.maxTurns(); turn++) {
-      String completion = llm.chat(history);
+      List<ChatMessage> ctx = new ArrayList<>(history.size() + 1);
+      if (systemPrompt != null && !systemPrompt.isBlank()) {
+        ctx.add(ChatMessage.system(systemPrompt));
+      }
+      ctx.addAll(history);
+
+      String completion = llm.chat(ctx);
 
       // 约定：若模型输出纯 JSON（或 fenced tool block），则视为工具调用。
       ToolCall call = ToolCall.tryParse(completion);

@@ -4,7 +4,7 @@
 
   <groupId>com.outbax</groupId>
   <artifactId>java-agent</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
   <name>java-agent</name>
   <description>Minimal Java agent scaffold (CLI + tools + OpenAI-compatible LLM + JSON memory)</description>
 
