@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://codex.snowcc.dpdns.org/v1",
+  "apiKey": "your-api-key-1",
+  "model": "gpt-5.2",
+  "timeoutSeconds": 120,
+  "memoryFile": "memory.json",
+  "maxTurns": 4
+}
